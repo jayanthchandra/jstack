@@ -12,10 +12,13 @@ def nova():
 	fil =subprocess.Popen(["grep","python"],stdin=a.stdout,stdout=subprocess.PIPE)
 	novafilter=subprocess.Popen(["grep","cinder"],stdin=f1.stdout,stdout=subprocess.PIPE)
 	cinderfilter=subprocess.Popen(["grep","cinder"],stdin=f1.stdout,stdout=subprocess.PIPE)
+	keys=subprocess.Popen(["grep","keystone"]),stdin=a.stdout,stdout=subprocess.PIPE)
 	novaout=novafilter.communicate()[0]
 	cindout=cinderfilter.communicate()[0]
+	keyout=keys.communicate()[0]
 	rawnova=novaout.split()
 	rawcind=cindout.split()
+	rawkey=keyout.split()
 	new=[item for item in rawnova if not item.isdigit()]
 	ind=[5,13,21,29,37,45,55]
 	nova=[]
@@ -27,6 +30,7 @@ def nova():
 	except :
 		novastatus = ['Nova-Certificate Not Verified','Nova-Console Auth not-working','nova-noVNC proxy not intiated','nova-Scheduler not Working and not connected to AMQP Server',
 		    	   'Nova-Conductor not Conducting','Nova-Network not Configured','Nova-Compute Engine not Started']
+	new=[item for item in rawcind if not item.isdigit()]
 	ind=[5,13,21,29,37,45]
 	cinder=[]
 	try:
