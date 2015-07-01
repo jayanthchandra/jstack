@@ -1,4 +1,5 @@
-from flask import Flask,current_app,render_template
+from flask import Flas
+k,current_app,render_template
 import subprocess
 app=Flask(__name__,static_url_path="")
 app.debug=True
@@ -9,16 +10,10 @@ def index():
 @app.route('/nova')
 def nova():
 	a=subprocess.Popen(['ps -ef'],stdout=subprocess.PIPE,shell=True)
-	fil =subprocess.Popen(["grep","python"],stdin=a.stdout,stdout=subprocess.PIPE)
+	f1 =subprocess.Popen(["grep","python"],stdin=a.stdout,stdout=subprocess.PIPE)
 	novafilter=subprocess.Popen(["grep","nova"],stdin=f1.stdout,stdout=subprocess.PIPE)
-	
-	keys=subprocess.Popen(["grep","keystone"]),stdin=a.stdout,stdout=subprocess.PIPE)
 	novaout=novafilter.communicate()[0]
-	
-	
 	rawnova=novaout.split()
-	
-	
 	new=[item for item in rawnova if not item.isdigit()]
 	ind=[5,13,21,29,37,45,55]
 	nova=[]
@@ -31,7 +26,7 @@ def nova():
 		novastatus = ['Nova-Certificate Not Verified','Nova-Console Auth not-working','nova-noVNC proxy not intiated','nova-Scheduler not Working and not connected to AMQP Server',
 		    	   'Nova-Conductor not Conducting','Nova-Network not Configured','Nova-Compute Engine not Started']
 	
-	return render_template('Services.html',**locals())
+	return render_template('nova.html',**locals())
 @app.route('/cinder')
 def cinder():
 	a=subprocess.Popen(['ps -ef'],stdout=subprocess.PIPE,shell=True)
