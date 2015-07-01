@@ -1,4 +1,4 @@
-from flask import Flas
+from flask import Flask
 k,current_app,render_template
 import subprocess
 app=Flask(__name__,static_url_path="")
@@ -44,7 +44,7 @@ def cinder():
 	except :
 		status = ['cinder-volume not working','cinder-scheduler not working','cinder-api not working',]
     
-    return render_template('cinder.html',**locals())
+ 	return render_template('cinder.html',**locals())
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=12345)
