@@ -6,19 +6,19 @@ app.debug=True
 def index():
 	return current_app.send_static_file('index.html')
 	
-@app.route('/service')
+@app.route('/nova')
 def nova():
 	a=subprocess.Popen(['ps -ef'],stdout=subprocess.PIPE,shell=True)
 	fil =subprocess.Popen(["grep","python"],stdin=a.stdout,stdout=subprocess.PIPE)
-	novafilter=subprocess.Popen(["grep","cinder"],stdin=f1.stdout,stdout=subprocess.PIPE)
-	cinderfilter=subprocess.Popen(["grep","cinder"],stdin=f1.stdout,stdout=subprocess.PIPE)
+	novafilter=subprocess.Popen(["grep","nova"],stdin=f1.stdout,stdout=subprocess.PIPE)
+	
 	keys=subprocess.Popen(["grep","keystone"]),stdin=a.stdout,stdout=subprocess.PIPE)
 	novaout=novafilter.communicate()[0]
-	cindout=cinderfilter.communicate()[0]
-	keyout=keys.communicate()[0]
+	
+	
 	rawnova=novaout.split()
-	rawcind=cindout.split()
-	rawkey=keyout.split()
+	
+	
 	new=[item for item in rawnova if not item.isdigit()]
 	ind=[5,13,21,29,37,45,55]
 	nova=[]
@@ -30,18 +30,26 @@ def nova():
 	except :
 		novastatus = ['Nova-Certificate Not Verified','Nova-Console Auth not-working','nova-noVNC proxy not intiated','nova-Scheduler not Working and not connected to AMQP Server',
 		    	   'Nova-Conductor not Conducting','Nova-Network not Configured','Nova-Compute Engine not Started']
-	new=[item for item in rawcind if not item.isdigit()]
-	ind=[5,13,21,29,37,45]
+	
+	return render_template('Services.html',**locals())
+@app.route('/cinder')
+def cinder():
+	a=subprocess.Popen(['ps -ef'],stdout=subprocess.PIPE,shell=True)
+	f1 =subprocess.Popen(["grep","python"],stdin=a.stdout,stdout=subprocess.PIPE)
+	cinderfilter=subprocess.Popen(["grep","cinder"],stdin=f1.stdout,stdout=subprocess.PIPE)
+	cindout=cinderfilter.communicate()[0]
 	cinder=[]
+	c=cindout.split()
+	new=[item for item in c if not item.isdigit()]
+	ind=[5,13,21,29,37,45]
 	try:
 		for i in ind:
 		    cinder.append(new[i])
-		    cinderstatus=['cinder-volume working','cinder-scheduler working','cinder-api  working']
+		    status=['cinder-volume working','cinder-scheduler working','cinder-api  working']
 	except :
-		cinderstatus = ['cinder-volume not working','cinder-scheduler not working','cinder-api not working',]
-	
-	
-	return render_template('Services.html',**locals())
+		status = ['cinder-volume not working','cinder-scheduler not working','cinder-api not working',]
+    
+    return render_template('cinder.html',**locals())
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=12345)

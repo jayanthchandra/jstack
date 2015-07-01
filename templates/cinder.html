@@ -15,37 +15,34 @@
 		
 	</head>
 	<body id="top">
-
-		<!-- Header -->
+<!-- Header -->
 			<header id="header" class="skel-layers-fixed">
-				<h1><a href="service">Nova</a></h1>
+				<h1><a href="cinder">Cinder</a></h1>
 				<nav id="nav">
 					<ul>
 						<li><a href="/">Home</a></li>
 						<li><a href="nova">Nova Status</li>
 						<li><a href="cinder">Cinder Status</li>
+
 						<li><a href="http://172.16.18.6/" class="button special">Login</a></li>
 					</ul>
 				</nav>
 			</header>
-
-		<!-- Main -->
-			<section id="main" class="wrapper style1">
+<section id="main" class="wrapper style1">
 				<header class="major">
-					<h2>Nova (Compute Service)</h2>
-					<p>The OpenStack cloud operating system enables enterprises and service providers to offer on-demand computing resources, by provisioning and managing large networks of virtual machines. </p>
+					<h2>Cinder(Storage Service)</h2>
+					<p>It provides a fully distributed, API-accessible storage platform that can be integrated directly into applications or used for backup, archiving and data retention. </p>
 				</header>
 				<div class="container">
 					<h2>Status</h2>
 					<ul>
-					{% for status in novastatus %}
-					<li>{{ status }}</li>
+					{% for stat in status %}
+					<li>{{ stat }}</li>
 					{% endfor %}
 					</ul>
 				
 				</div>
 			</section>
-			
 
 		<!-- Footer -->
 				<footer id="footer">
