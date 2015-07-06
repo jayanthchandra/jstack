@@ -81,6 +81,6 @@ def swift():
 
 	return render_template('apache.html',**locals())
 
-@app.route('/')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=12345)
