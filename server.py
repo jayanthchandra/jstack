@@ -1,5 +1,4 @@
-from flask import Flask
-k,current_app,render_template
+from flask import Flask,current_app,render_template
 import subprocess
 app=Flask(__name__,static_url_path="")
 app.debug=True
@@ -45,6 +44,43 @@ def cinder():
 		status = ['cinder-volume not working','cinder-scheduler not working','cinder-api not working',]
     
  	return render_template('cinder.html',**locals())
+@app.route('/glance')
+def glance():
+	a=subprocess.Popen(['ps -ef'],stdout=subprocess.PIPE,shell=True)
+	f1 =subprocess.Popen(["grep","python"],stdin=a.stdout,stdout=subprocess.PIPE)
+	glancefilter=subprocess.Popen(["grep","glance"],stdin=f1.stdout,stdout=subprocess.PIPE)
+	glanceout=cinderfilter.communicate()[0]
+	glance=[]
+	c=glanceout.split()
+	new=[item for item in c if not item.isdigit()]
+	ind=[5,12,19,26,33,40]
+	try:
+		for i in ind:
+			glance.append(new[i])
+			status=['Glance API Intiated','Glance API registered','Glance API Working','Glance Service Started']
+	except:
+		status=['Glance API not Intiated','Glance API not registered','Glance API not  Working','Glance Service not Started']
 
+	return render_template('glance.html',**locals())
+
+@app.route('/swift')
+def swift():
+	a=subprocess.Popen(['ps -ef'],stdout=subprocess.PIPE,shell=True)
+	apachefilter =subprocess.Popen(["grep","apache"],stdin=a.stdout,stdout=subprocess.PIPE)
+	apacheout=apachefilter.communicate()[0]
+	apache=[]
+	c=apacheout.split()
+	new=[item for item in c if not item.isdigit()]
+	ind=[4,11,18,28,36,44,51,58,65]
+	try:
+		for i in ind:
+			apache.append(new[i])
+			status=['Apache Process Started','Swift Service Intiated','Keystone Process Running','Keystone Access Given','Horizon Log Service Started']
+	except:
+			status=['Apache Process Not Running','Swift Service Not Intiated','Keystone Process Not Running','Keystone Access Not  Given','Horizon Log Servive Not Started']
+
+	return render_template('apache.html',**locals())
+
+@app.route('/')
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=12345)

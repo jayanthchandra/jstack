@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Nova</title>
+		<title>Apache</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta http-equiv="refresh" content="5">
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
@@ -15,10 +15,9 @@
 		
 	</head>
 	<body id="top">
-
-		<!-- Header -->
+<!-- Header -->
 			<header id="header" class="skel-layers-fixed">
-				<h1><a href="cinder">Nova</a></h1>
+				<h1><a href="cinder">Apache</a></h1>
 				<nav id="nav">
 					<ul>
 						<li><a href="index.html">Home</a></li>
@@ -26,25 +25,24 @@
 					</ul>
 				</nav>
 			</header>
-
-		<!-- Main -->
-			<section id="main" class="wrapper style1">
+<section id="main" class="wrapper style1">
 				<header class="major">
-					<h2>Nova (Compute Service)</h2>
-					<p>The OpenStack cloud operating system enables enterprises and service providers to offer on-demand computing resources, by provisioning and managing large networks of virtual machines. </p>
+					<h2>Apache</h2>
+					<p>The integral web front-end is a wsgi mini “Web Server” which opens up its own socket and serves http requests directly. The incoming requests accepted by the integral web front-end are then forwarded to a wsgi application (the core swift) for further handling, possibly via wsgi middleware sub-components.</p>
+					<br/>
+					<p>client<—->’integral web front-end’<—->middleware<—->’core swift’</p>
 				</header>
 				<div class="container">
 					<h2>Status</h2>
 					<h3>
 					<ul>
-					{% for status in novastatus %}
-					<li>{{ status }}</li>
+					{% for stat in status %}
+					<li>{{ stat }}</li>
 					{% endfor %}
 					</ul>
 					</h3>
 				</div>
 			</section>
-			
 
 		<!-- Footer -->
 				<footer id="footer">
