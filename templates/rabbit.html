@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Apache</title>
+		<title>Rabbit-MQ</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta http-equiv="refresh" content="5">
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
@@ -17,7 +17,7 @@
 	<body id="top">
 <!-- Header -->
 			<header id="header" class="skel-layers-fixed">
-				<h1><a href="cinder">Apache</a></h1>
+				<h1><a href="cinder">Rabbit MQ</a></h1>
 				<nav id="nav">
 					<ul>
 						<li><a href="index.html">Home</a></li>
@@ -27,10 +27,17 @@
 			</header>
 <section id="main" class="wrapper style1">
 				<header class="major">
-					<h2>Apache</h2>
-					<p>The integral web front-end is a wsgi mini “Web Server” which opens up its own socket and serves http requests directly. The incoming requests accepted by the integral web front-end are then forwarded to a wsgi application (the core swift) for further handling, possibly via wsgi middleware sub-components.</p>
-					<br/>
-					<h1>Client<<—->>Integral Web front-end<<—->>Middleware<<—->>Core Swift’</h1>
+					<h2>Rabbit-MQ</h2>
+					<p>OpenStack requires a messaging service for internal communications between various components. Currently, this is done by using an AMQP broker. OpenStack can be configured to use either the Qpid broker or the RabbitMQ broker.<p><br/>
+					<h2>Services currently working with HA queues:<h2>
+					<h3>
+						<ul>
+							<li>OpenStack Compute</li>
+							<li>OpenStack Block Storage</li>
+							<li>OpenStack Networking</li>
+							<li>Telemetry</li>
+						</ul>
+					</h3>
 				</header>
 				<div class="container">
 					<h2>Status</h2>
