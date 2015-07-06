@@ -84,7 +84,7 @@ def swift():
 @app.route('/rabbit')
 def dependencies():
 	a=subprocess.Popen(['ps -ef'],stdout=subprocess.PIPE,shell=True)
-	rabbitfilter =subprocess.Popen(["grep","apache"],stdin=a.stdout,stdout=subprocess.PIPE)
+	rabbitfilter =subprocess.Popen(["grep","rabbit"],stdin=a.stdout,stdout=subprocess.PIPE)
 	rabbitout=rabbitfilter.communicate()[0]
 	rabbit=[]
 	c=rabbitout.split()
